@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { AnalyticsService } from '../../services';
-import catchAsync from '../../utils/catchAsync';
+import catchAsync from '../../utils/catch-async';
 import logger from '../../utils/logger';
 
 /**
