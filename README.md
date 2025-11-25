@@ -78,20 +78,35 @@ A production application would benefit from a design system, but for demonstrati
 
 ## Testing Approach
 
-The testing strategy prioritizes the areas where bugs would cause the most damage: data integrity and business logic.
+The backend includes API tests using Jest and Supertest with a mocked database layer. To run the tests:
 
-Service layer tests verify that inventory operations behave correctly. These tests mock the database layer and focus on business rules like preventing negative stock quantities or ensuring bulk updates are atomic.
+```bash
+cd server && npm test
+```
 
-API integration tests verify that endpoints accept valid input, reject invalid input with appropriate error messages, and return correctly structured responses. These tests run against a test database to verify the full request lifecycle.
+The tests mock the Knex database module rather than hitting a real database. This approach uses Jest's module mocking to replace the database connection with a mock function that returns chainable query builders. Each test configures the mock to return specific data, allowing tests to run quickly without database setup.
 
-Frontend testing focuses on user interactions: can a user filter products, navigate to a detail page, and submit a form? These tests use React Testing Library to interact with components as users would rather than testing implementation details.
+The mock creates a chainable object that mimics Knex's fluent API:
 
-The seed data doubles as a test fixture, ensuring the application always has realistic data to work with during both development and automated testing.
+```typescript
+const mockBuilder = {
+  select: jest.fn().mockReturnThis(),
+  where: jest.fn().mockReturnThis(),
+  first: jest.fn().mockResolvedValue(mockData),
+  // ... other chainable methods
+};
+```
+
+For error path tests, the mock is configured to return `undefined` from `.first()` to simulate a not-found scenario, or validation is tested by sending incomplete request bodies that fail before reaching the database layer.
+
+The tests cover both success and failure scenarios. Happy path tests verify that stores and products can be created and retrieved with filters working correctly. Error path tests verify that validation rejects incomplete data and that requests for non-existent resources return appropriate 404 responses.
 
 ## If I Had More Time
 
-**Transaction management for bulk operations.** The bulk stock update currently updates products sequentially. If the third update fails, the first two have already committed. Wrapping the entire operation in a database transaction would ensure all-or-nothing semantics, which matters for inventory accuracy.
+**Global state management with Zustand or Redux Toolkit.** Currently, the frontend uses local component state and refetches data after mutations. A global store would enable optimistic updates, shared state across components, and better cache management. Zustand would be the lighter choice for an application of this size, while Redux Toolkit would provide more structure if the application grew significantly.
 
-**Optimistic UI updates.** Currently, after creating or updating a record, the frontend refetches the entire list. Optimistically updating the UI immediately and then reconciling with the server response would make the application feel faster, though it adds complexity around handling conflicts.
+**End-to-end testing with Cypress.** The current test suite covers API endpoints with mocked database calls. Adding Cypress would enable testing the full user flow from the browser through the API to the database, catching integration issues that unit tests miss. Tests would cover scenarios like creating a store, adding products, and verifying the data appears correctly in the UI.
 
 **Comprehensive error recovery.** The application handles errors by displaying messages, but it doesn't help users recover. For example, if a product creation fails due to a duplicate SKU, the form could suggest an alternative SKU rather than just reporting the error.
+
+**Redis caching for list endpoints.** The product and store list endpoints currently hit the database on every request. Adding a Redis caching layer would reduce database load for frequently accessed data. The cache would store paginated results with keys based on the query parameters, and cache invalidation would occur on any write operation to the relevant table. This becomes increasingly valuable as the dataset grows and multiple users access the same filtered views.
