@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { StoreService } from '../../services';
 import { CreateStoreSchema, UpdateStoreSchema, StoreQuerySchema } from '../../interfaces';
-import catchAsync from '../../utils/catchAsync';
+import catchAsync from '../../utils/catch-async';
 import logger from '../../utils/logger';
 
 export class StoreController {
