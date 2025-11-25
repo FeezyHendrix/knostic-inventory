@@ -16,8 +16,11 @@ export default ({ app }: { app: express.Application }) => {
   });
 
   app.use(helmet());
+
+  // CORS configuration
+  const corsOrigin = process.env.CORS_ORIGIN || (process.env.NODE_ENV === 'production' ? false : true);
   app.use(cors({
-    origin: process.env.NODE_ENV === 'production' ? false : true,
+    origin: corsOrigin,
     credentials: true,
   }));
   app.use(limiter);

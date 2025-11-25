@@ -6,7 +6,7 @@ import {
   ProductQuerySchema,
   BulkUpdateStockSchema 
 } from '../../interfaces';
-import catchAsync from '../../utils/catchAsync';
+import catchAsync from '../../utils/catch-async';
 import logger from '../../utils/logger';
 
 export class ProductController {

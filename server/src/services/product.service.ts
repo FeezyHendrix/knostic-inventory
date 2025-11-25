@@ -73,14 +73,15 @@ export class ProductService {
       let queryBuilder = db('products')
         .select(
           'products.id',
+          'products.store_id',
           'products.name',
           'products.description',
           'products.category',
           'products.price',
-          'products.quantity_in_stock as quantityInStock',
+          'products.quantity_in_stock',
           'products.sku',
-          'products.created_at as createdAt',
-          'products.updated_at as updatedAt',
+          'products.created_at',
+          'products.updated_at',
           db.raw('json_build_object(\'id\', stores.id, \'name\', stores.name, \'city\', stores.city, \'state\', stores.state) as store')
         )
         .innerJoin('stores', 'products.store_id', 'stores.id');
@@ -182,14 +183,15 @@ export class ProductService {
       const product = await db('products')
         .select(
           'products.id',
+          'products.store_id',
           'products.name',
           'products.description',
           'products.category',
           'products.price',
-          'products.quantity_in_stock as quantityInStock',
+          'products.quantity_in_stock',
           'products.sku',
-          'products.created_at as createdAt',
-          'products.updated_at as updatedAt',
+          'products.created_at',
+          'products.updated_at',
           db.raw('json_build_object(\'id\', stores.id, \'name\', stores.name, \'city\', stores.city, \'state\', stores.state) as store')
         )
         .innerJoin('stores', 'products.store_id', 'stores.id')
@@ -320,14 +322,15 @@ export class ProductService {
       const lowStockProducts = await db('products')
         .select(
           'products.id',
+          'products.store_id',
           'products.name',
           'products.description',
           'products.category',
           'products.price',
-          'products.quantity_in_stock as quantityInStock',
+          'products.quantity_in_stock',
           'products.sku',
-          'products.created_at as createdAt',
-          'products.updated_at as updatedAt',
+          'products.created_at',
+          'products.updated_at',
           db.raw('json_build_object(\'id\', stores.id, \'name\', stores.name, \'city\', stores.city, \'state\', stores.state) as store')
         )
         .innerJoin('stores', 'products.store_id', 'stores.id')

@@ -11,7 +11,10 @@ const config = {
   },
   pool: {
     min: 2,
-    max: 10
+    max: 10,
+    acquireTimeoutMillis: 30000,
+    createTimeoutMillis: 30000,
+    idleTimeoutMillis: 30000,
   },
   migrations: {
     tableName: 'knex_migrations',
@@ -25,3 +28,19 @@ const config = {
 };
 
 export const db = knex(config);
+
+export async function testConnection(): Promise<boolean> {
+  try {
+    await db.raw('SELECT 1');
+    console.log('Database connection established successfully');
+    return true;
+  } catch (error: any) {
+    console.error('Failed to connect to database:', error.message);
+    return false;
+  }
+}
+
+export async function closeConnection(): Promise<void> {
+  await db.destroy();
+  console.log('Database connection closed');
+}

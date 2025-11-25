@@ -4,8 +4,8 @@ export const storesData = [
     address: '123 Main Street',
     city: 'New York',
     state: 'NY',
-    zipCode: '10001',
-    phoneNumber: '555-0123',
+    zip_code: '10001',
+    phone_number: '555-0123',
     email: 'contact@downtown-electronics.com'
   },
   {
@@ -13,8 +13,8 @@ export const storesData = [
     address: '456 Broadway Ave',
     city: 'Los Angeles',
     state: 'CA',
-    zipCode: '90210',
-    phoneNumber: '555-0456',
+    zip_code: '90210',
+    phone_number: '555-0456',
     email: 'info@westside-tech.com'
   },
   {
@@ -22,8 +22,8 @@ export const storesData = [
     address: '789 Michigan Avenue',
     city: 'Chicago',
     state: 'IL',
-    zipCode: '60601',
-    phoneNumber: '555-0789',
+    zip_code: '60601',
+    phone_number: '555-0789',
     email: 'sales@chicago-computers.com'
   },
   {
@@ -31,8 +31,8 @@ export const storesData = [
     address: '321 Ocean Drive',
     city: 'Miami',
     state: 'FL',
-    zipCode: '33139',
-    phoneNumber: '555-0321',
+    zip_code: '33139',
+    phone_number: '555-0321',
     email: 'hello@miami-mobile.com'
   },
   {
@@ -40,8 +40,8 @@ export const storesData = [
     address: '654 Pine Street',
     city: 'Seattle',
     state: 'WA',
-    zipCode: '98101',
-    phoneNumber: '555-0654',
+    zip_code: '98101',
+    phone_number: '555-0654',
     email: 'support@seattle-software.com'
   },
   {
@@ -49,8 +49,8 @@ export const storesData = [
     address: '987 Congress Avenue',
     city: 'Austin',
     state: 'TX',
-    zipCode: '73301',
-    phoneNumber: '555-0987',
+    zip_code: '73301',
+    phone_number: '555-0987',
     email: 'orders@austin-av.com'
   },
   {
@@ -58,8 +58,8 @@ export const storesData = [
     address: '147 Newbury Street',
     city: 'Boston',
     state: 'MA',
-    zipCode: '02116',
-    phoneNumber: '555-0147',
+    zip_code: '02116',
+    phone_number: '555-0147',
     email: 'info@boston-books-tech.com'
   },
   {
@@ -67,8 +67,8 @@ export const storesData = [
     address: '258 16th Street',
     city: 'Denver',
     state: 'CO',
-    zipCode: '80202',
-    phoneNumber: '555-0258',
+    zip_code: '80202',
+    phone_number: '555-0258',
     email: 'contact@denver-digital.com'
   }
 ];
