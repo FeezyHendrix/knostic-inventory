@@ -113,7 +113,7 @@ export const AnalyticsDashboard: React.FC = () => {
 
   return (
     <div style={{ padding: "2rem" }}>
-      <h1>Analytics Dashboard</h1>
+      <h2>Analytics Dashboard</h2>
 
       {/* Controls */}
       <div style={{ marginBottom: "2rem", padding: "1rem", border: "1px solid #ddd" }}>

@@ -36,15 +36,9 @@ GET    /api/v1/analytics/stores/performance   Store performance rankings
 
 ### Why PostgreSQL and Stored Procedures
 
-The choice of PostgreSQL over SQLite or in-memory storage stems from wanting to push complex analytical computations into the database layer rather than handling them in application code. Inventory analytics involve time-series aggregations, window functions for rankings, and multi-table joins that become unwieldy when implemented in JavaScript.
+PostgreSQL was chosen to push complex analytical computations into the database layer. The store performance ranking calculation, for example, needs to aggregate sales by store, compute inventory turnover ratios, and rank stores against each other. Implementing this in JavaScript would require fetching all records into memory and performing multiple passes to group, aggregate, and sort. By encapsulating this logic in a stored procedure, PostgreSQL can use indexes to accelerate aggregations, perform ranking with window functions in a single pass, and return only the final results.
 
-Consider the store performance ranking calculation: it needs to aggregate sales by store, compute inventory turnover ratios, calculate weighted performance scores, and rank stores against each other. Implementing this in application code would require fetching all sales records, all products, and all stores into memory, then performing multiple passes to group, aggregate, and sort the data. As the dataset grows, this approach consumes increasing amounts of memory and CPU on the application server while the database sits idle.
-
-By encapsulating this logic in the `get_store_performance_rankings` stored procedure, the computation happens where the data lives. PostgreSQL can use indexes to accelerate the aggregations, perform the ranking with window functions in a single pass, and return only the final ranked results. The application receives a compact response rather than raw data it needs to process.
-
-The trade-off is reduced portability. These stored procedures are PostgreSQL-specific and would require rewriting for MySQL or another database. However, for an inventory system where the database choice is unlikely to change frequently, optimizing for query performance and keeping complex business logic close to the data seemed like the right trade-off.
-
-SQLite was considered but lacks stored procedure support entirely. An in-memory solution would lose data between restarts and couldn't demonstrate the query patterns that matter in a real inventory system.
+The trade-off is reduced portability since stored procedures are PostgreSQL-specific. However, for an inventory system where the database choice is unlikely to change, optimizing for query performance seemed like the right trade-off. SQLite was considered but lacks stored procedure support entirely.
 
 ### The Service Layer Pattern
 
