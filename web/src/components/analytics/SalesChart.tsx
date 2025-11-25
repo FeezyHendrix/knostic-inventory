@@ -91,7 +91,6 @@ export const SalesChart: React.FC<SalesChartProps> = ({
         style={{ height }}
       >
         <div className="text-center text-gray-500">
-          <div className="text-xl mb-2">📊</div>
           <div>No sales data available for the selected period</div>
         </div>
       </div>

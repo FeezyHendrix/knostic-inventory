@@ -2,8 +2,6 @@
 export type {
   SalesAnalytics,
   StorePerformanceRanking,
-  ProductPerformance,
   AnalyticsTimeRange,
   StoreAnalyticsOptions,
-  ProductAnalyticsOptions,
 } from './sales';
