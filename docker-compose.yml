@@ -1,0 +1,106 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: inventory_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: inventory_db
+      POSTGRES_USER: inventory_user
+      POSTGRES_PASSWORD: inventory_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./server/init-db.sql:/docker-entrypoint-initdb.d/init-db.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U inventory_user -d inventory_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Backend API
+  api:
+    build:
+      context: ./server
+      target: dev
+    container_name: inventory_api
+    restart: unless-stopped
+    environment:
+      NODE_ENV: development
+      PORT: 3000
+      DATABASE_URL: postgresql://inventory_user:inventory_password@postgres:5432/inventory_db
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: ["sh", "-c", "npm run db:migrate && npm run seed && npm run dev"]
+
+  # Frontend Web App
+  web:
+    build:
+      context: ./web
+      target: development
+    container_name: inventory_web
+    restart: unless-stopped
+    environment:
+      REACT_APP_API_URL: http://localhost:3000/api/v1
+      CHOKIDAR_USEPOLLING: true
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./web:/app
+      - /app/node_modules
+    depends_on:
+      - api
+    stdin_open: true
+    tty: true
+
+
+  # Database Migration Service
+  migrate:
+    build:
+      context: ./server
+      target: builder
+    container_name: inventory_migrate
+    environment:
+      DATABASE_URL: postgresql://inventory_user:inventory_password@postgres:5432/inventory_db
+    volumes:
+      - ./server:/app
+    depends_on:
+      postgres:
+        condition: service_healthy
+    command: ["sh", "-c", "npm run db:migrate"]
+    profiles: 
+      - migrate
+
+  # Database Seeder Service
+  seed:
+    build:
+      context: ./server
+      target: builder
+    container_name: inventory_seed
+    environment:
+      DATABASE_URL: postgresql://inventory_user:inventory_password@postgres:5432/inventory_db
+    depends_on:
+      migrate:
+        condition: service_completed_successfully
+    command: ["npm", "run", "seed"]
+    profiles: 
+      - seed
+
+volumes:
+  postgres_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+
+networks:
+  default:
+    name: inventory_network
