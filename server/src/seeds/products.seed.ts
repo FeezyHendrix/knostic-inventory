@@ -5,7 +5,7 @@ export const productsData = [
     description: 'Latest Apple smartphone with A17 Pro chip',
     category: 'Smartphones',
     price: '999.99',
-    quantityInStock: 50,
+    quantity_in_stock: 50,
     sku: 'IP15P-128-BLK'
   },
   {
@@ -13,7 +13,7 @@ export const productsData = [
     description: 'Flagship Android smartphone with AI features',
     category: 'Smartphones',
     price: '899.99',
-    quantityInStock: 45,
+    quantity_in_stock: 45,
     sku: 'SGS24-256-WHT'
   },
   {
@@ -21,7 +21,7 @@ export const productsData = [
     description: '13-inch laptop with M3 chip and 16GB RAM',
     category: 'Laptops',
     price: '1399.99',
-    quantityInStock: 25,
+    quantity_in_stock: 25,
     sku: 'MBA-M3-16-512'
   },
   {
@@ -29,7 +29,7 @@ export const productsData = [
     description: 'Ultra-portable Windows laptop with Intel Core i7',
     category: 'Laptops',
     price: '1199.99',
-    quantityInStock: 30,
+    quantity_in_stock: 30,
     sku: 'DXS13-I7-16-512'
   },
   {
@@ -37,7 +37,7 @@ export const productsData = [
     description: 'Professional tablet with M2 chip and Apple Pencil support',
     category: 'Tablets',
     price: '1099.99',
-    quantityInStock: 35,
+    quantity_in_stock: 35,
     sku: 'IPP129-M2-256'
   },
   {
@@ -45,7 +45,7 @@ export const productsData = [
     description: 'Portable gaming console with OLED screen',
     category: 'Gaming',
     price: '349.99',
-    quantityInStock: 60,
+    quantity_in_stock: 60,
     sku: 'NSW-OLED-WHT'
   },
   {
@@ -53,7 +53,7 @@ export const productsData = [
     description: 'Next-gen gaming console with 4K gaming',
     category: 'Gaming',
     price: '499.99',
-    quantityInStock: 15,
+    quantity_in_stock: 15,
     sku: 'PS5-STD-WHT'
   },
   {
@@ -61,7 +61,7 @@ export const productsData = [
     description: 'Microsoft\'s flagship gaming console',
     category: 'Gaming',
     price: '499.99',
-    quantityInStock: 20,
+    quantity_in_stock: 20,
     sku: 'XSX-1TB-BLK'
   },
   {
@@ -69,7 +69,7 @@ export const productsData = [
     description: 'Wireless earbuds with active noise cancellation',
     category: 'Audio',
     price: '249.99',
-    quantityInStock: 80,
+    quantity_in_stock: 80,
     sku: 'APP2-WHT-USB'
   },
   {
@@ -77,7 +77,7 @@ export const productsData = [
     description: 'Premium wireless headphones with noise canceling',
     category: 'Audio',
     price: '399.99',
-    quantityInStock: 40,
+    quantity_in_stock: 40,
     sku: 'SWH1000XM5-BLK'
   },
   {
@@ -85,7 +85,7 @@ export const productsData = [
     description: 'Advanced smartwatch with health tracking',
     category: 'Wearables',
     price: '429.99',
-    quantityInStock: 55,
+    quantity_in_stock: 55,
     sku: 'AWS9-45-BLK-SP'
   },
   {
@@ -93,7 +93,7 @@ export const productsData = [
     description: 'Android smartwatch with comprehensive health monitoring',
     category: 'Wearables',
     price: '329.99',
-    quantityInStock: 45,
+    quantity_in_stock: 45,
     sku: 'SGW6-44-SLV'
   },
   {
@@ -101,7 +101,7 @@ export const productsData = [
     description: 'Professional mirrorless camera with 45MP sensor',
     category: 'Cameras',
     price: '3899.99',
-    quantityInStock: 8,
+    quantity_in_stock: 8,
     sku: 'CEOSR5-BODY'
   },
   {
@@ -109,7 +109,7 @@ export const productsData = [
     description: 'Full-frame mirrorless camera for creators',
     category: 'Cameras',
     price: '2499.99',
-    quantityInStock: 12,
+    quantity_in_stock: 12,
     sku: 'SA7IV-BODY-BLK'
   },
   {
@@ -117,7 +117,7 @@ export const productsData = [
     description: '55-inch 4K OLED Smart TV with webOS',
     category: 'TVs',
     price: '1399.99',
-    quantityInStock: 18,
+    quantity_in_stock: 18,
     sku: 'LG55C3-OLED'
   },
   {
@@ -125,7 +125,7 @@ export const productsData = [
     description: '65-inch 4K Neo QLED TV with Quantum Matrix Technology',
     category: 'TVs',
     price: '1799.99',
-    quantityInStock: 10,
+    quantity_in_stock: 10,
     sku: 'SAM65NEOQLED'
   },
   {
@@ -133,7 +133,7 @@ export const productsData = [
     description: 'AI-powered Android phone with advanced photography',
     category: 'Smartphones',
     price: '699.99',
-    quantityInStock: 40,
+    quantity_in_stock: 40,
     sku: 'GP8-128-MINT'
   },
   {
@@ -141,7 +141,7 @@ export const productsData = [
     description: '2-in-1 laptop tablet with Intel Core i5',
     category: 'Tablets',
     price: '999.99',
-    quantityInStock: 22,
+    quantity_in_stock: 22,
     sku: 'MSP9-I5-8-256'
   },
   {
@@ -149,7 +149,7 @@ export const productsData = [
     description: 'Wireless noise-canceling headphones',
     category: 'Audio',
     price: '329.99',
-    quantityInStock: 35,
+    quantity_in_stock: 35,
     sku: 'BQC45-BLK-WL'
   },
   {
@@ -157,7 +157,7 @@ export const productsData = [
     description: 'Smart doorbell with 1080p video and motion detection',
     category: 'Smart Home',
     price: '199.99',
-    quantityInStock: 65,
+    quantity_in_stock: 65,
     sku: 'RVD4-1080-WHT'
   },
   {
@@ -165,7 +165,7 @@ export const productsData = [
     description: 'Compact smart speaker with Alexa',
     category: 'Smart Home',
     price: '49.99',
-    quantityInStock: 120,
+    quantity_in_stock: 120,
     sku: 'AED5-DOT-BLU'
   },
   {
@@ -173,7 +173,7 @@ export const productsData = [
     description: 'Smart thermostat that learns your schedule',
     category: 'Smart Home',
     price: '129.99',
-    quantityInStock: 50,
+    quantity_in_stock: 50,
     sku: 'NT-SMART-WHT'
   },
   {
@@ -181,7 +181,7 @@ export const productsData = [
     description: 'Advanced wireless mouse for productivity',
     category: 'Accessories',
     price: '99.99',
-    quantityInStock: 75,
+    quantity_in_stock: 75,
     sku: 'LMX3S-BLK-WL'
   },
   {
@@ -189,7 +189,7 @@ export const productsData = [
     description: 'Wireless keyboard for Mac with Touch ID',
     category: 'Accessories',
     price: '179.99',
-    quantityInStock: 60,
+    quantity_in_stock: 60,
     sku: 'AMK-USBC-WHT'
   },
   {
@@ -197,7 +197,7 @@ export const productsData = [
     description: 'High-performance graphics card for gaming',
     category: 'PC Components',
     price: '599.99',
-    quantityInStock: 25,
+    quantity_in_stock: 25,
     sku: 'NV4070-12GB'
   },
   {
@@ -205,7 +205,7 @@ export const productsData = [
     description: '8-core processor for gaming and content creation',
     category: 'PC Components',
     price: '349.99',
-    quantityInStock: 30,
+    quantity_in_stock: 30,
     sku: 'AMR77700X-8C'
   },
   {
@@ -213,7 +213,7 @@ export const productsData = [
     description: 'High-speed NVMe SSD for gaming and professional use',
     category: 'Storage',
     price: '129.99',
-    quantityInStock: 85,
+    quantity_in_stock: 85,
     sku: 'S980P-1TB-M2'
   },
   {
@@ -221,7 +221,7 @@ export const productsData = [
     description: 'High-capacity external hard drive for backup',
     category: 'Storage',
     price: '89.99',
-    quantityInStock: 70,
+    quantity_in_stock: 70,
     sku: 'WDB4TB-EXT-BLK'
   },
   {
@@ -229,7 +229,7 @@ export const productsData = [
     description: 'High-capacity portable charger with fast charging',
     category: 'Accessories',
     price: '39.99',
-    quantityInStock: 150,
+    quantity_in_stock: 150,
     sku: 'APC20K-USBC'
   },
   {
@@ -237,7 +237,7 @@ export const productsData = [
     description: 'Magnetic phone mount designed for Tesla vehicles',
     category: 'Automotive',
     price: '29.99',
-    quantityInStock: 95,
+    quantity_in_stock: 95,
     sku: 'TMY-MOUNT-MAG'
   }
 ];

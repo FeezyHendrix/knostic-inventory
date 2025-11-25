@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { StoreService } from '../services/api';
 import { CreateStoreDto } from '../types/api';
 
@@ -45,8 +46,8 @@ const StoreDetail: React.FC = () => {
           address: storeData.address,
           city: storeData.city,
           state: storeData.state,
-          zipCode: storeData.zipCode,
-          phoneNumber: storeData.phoneNumber,
+          zipCode: storeData.zip_code,
+          phoneNumber: storeData.phone_number,
           email: storeData.email,
         });
       } else {
@@ -116,8 +117,10 @@ const StoreDetail: React.FC = () => {
       }
 
       if (response.success) {
+        toast.success(`Store ${isEditing ? 'updated' : 'created'} successfully`);
         navigate('/stores');
       } else {
+        toast.error(response.error || `Failed to ${isEditing ? 'update' : 'create'} store`);
         setError(response.error || `Failed to ${isEditing ? 'update' : 'create'} store`);
         if (response.details) {
           const fieldErrors: Record<string, string> = {};
@@ -130,7 +133,9 @@ const StoreDetail: React.FC = () => {
         }
       }
     } catch (err: any) {
-      setError(err.response?.data?.error || `Failed to ${isEditing ? 'update' : 'create'} store`);
+      const errorMsg = err.response?.data?.error || `Failed to ${isEditing ? 'update' : 'create'} store`;
+      toast.error(errorMsg);
+      setError(errorMsg);
       if (err.response?.data?.details) {
         const fieldErrors: Record<string, string> = {};
         err.response.data.details.forEach((detail: any) => {

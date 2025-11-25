@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { StoreService } from '../services/api';
 import { Store } from '../types/api';
 
@@ -33,16 +34,20 @@ const StoreList: React.FC = () => {
 
   const deleteStore = async (id: number) => {
     if (!window.confirm('Are you sure you want to delete this store? This will also delete all associated products.')) return;
-    
+
     try {
       const response = await StoreService.deleteStore(id);
       if (response.success) {
+        toast.success('Store deleted successfully');
         await loadStores();
       } else {
+        toast.error(response.error || 'Failed to delete store');
         setError(response.error || 'Failed to delete store');
       }
     } catch (err: any) {
-      setError(err.response?.data?.error || 'Failed to delete store');
+      const errorMsg = err.response?.data?.error || 'Failed to delete store';
+      toast.error(errorMsg);
+      setError(errorMsg);
     }
   };
 
@@ -78,8 +83,8 @@ const StoreList: React.FC = () => {
               <tr key={store.id}>
                 <td>{store.name}</td>
                 <td>{store.address}</td>
-                <td>{store.city}, {store.state} {store.zipCode}</td>
-                <td>{store.phoneNumber}</td>
+                <td>{store.city}, {store.state} {store.zip_code}</td>
+                <td>{store.phone_number}</td>
                 <td>{store.email}</td>
                 <td>
                   <Link to={`/stores/${store.id}`} className="btn btn-sm">Edit</Link>

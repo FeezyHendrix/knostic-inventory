@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import ProductList from './components/ProductList';
 import ProductDetail from './components/ProductDetail';
 import StoreList from './components/StoreList';
@@ -10,6 +11,7 @@ import './App.css';
 function App() {
   return (
     <Router>
+      <Toaster position="top-right" />
       <div className="App">
         <header className="App-header">
           <div className="header-content">

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 import { ProductService, StoreService } from "../services/api";
 import { Product, Store, ProductQuery } from "../types/api";
 
@@ -74,12 +75,16 @@ const ProductList: React.FC = () => {
     try {
       const response = await ProductService.deleteProduct(id);
       if (response.success) {
+        toast.success("Product deleted successfully");
         await loadProducts();
       } else {
+        toast.error(response.error || "Failed to delete product");
         setError(response.error || "Failed to delete product");
       }
     } catch (err: any) {
-      setError(err.response?.data?.error || "Failed to delete product");
+      const errorMsg = err.response?.data?.error || "Failed to delete product";
+      toast.error(errorMsg);
+      setError(errorMsg);
     }
   };
 
@@ -232,7 +237,7 @@ const ProductList: React.FC = () => {
                   <td>{product.sku}</td>
                   <td>{product.category}</td>
                   <td>${parseFloat(product.price).toFixed(2)}</td>
-                  <td>{product.quantityInStock}</td>
+                  <td>{product.quantity_in_stock}</td>
                   <td>
                     {product.store && `${product.store.name} - ${product.store.city}, ${product.store.state}`}
                   </td>

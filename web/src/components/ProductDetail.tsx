@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { ProductService, StoreService } from '../services/api';
 import { Store, CreateProductDto, UpdateProductDto } from '../types/api';
 
@@ -57,12 +58,12 @@ const ProductDetail: React.FC = () => {
       if (response.success && response.data) {
         const productData = response.data;
         setProduct({
-          storeId: productData.storeId,
+          storeId: productData.store_id,
           name: productData.name,
           description: productData.description || '',
           category: productData.category,
           price: productData.price,
-          quantityInStock: productData.quantityInStock,
+          quantityInStock: productData.quantity_in_stock,
           sku: productData.sku,
         });
       } else {
@@ -130,8 +131,10 @@ const ProductDetail: React.FC = () => {
       }
 
       if (response.success) {
+        toast.success(`Product ${isEditing ? 'updated' : 'created'} successfully`);
         navigate('/products');
       } else {
+        toast.error(response.error || `Failed to ${isEditing ? 'update' : 'create'} product`);
         setError(response.error || `Failed to ${isEditing ? 'update' : 'create'} product`);
         if (response.details) {
           const fieldErrors: Record<string, string> = {};
@@ -144,7 +147,9 @@ const ProductDetail: React.FC = () => {
         }
       }
     } catch (err: any) {
-      setError(err.response?.data?.error || `Failed to ${isEditing ? 'update' : 'create'} product`);
+      const errorMsg = err.response?.data?.error || `Failed to ${isEditing ? 'update' : 'create'} product`;
+      toast.error(errorMsg);
+      setError(errorMsg);
       if (err.response?.data?.details) {
         const fieldErrors: Record<string, string> = {};
         err.response.data.details.forEach((detail: any) => {

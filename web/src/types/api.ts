@@ -1,14 +1,15 @@
+// Response types match what the backend returns (snake_case from database)
 export interface Product {
   id: number;
-  storeId: number;
+  store_id: number;
   name: string;
   description?: string;
   category: string;
   price: string;
-  quantityInStock: number;
+  quantity_in_stock: number;
   sku: string;
-  createdAt: string;
-  updatedAt: string;
+  created_at: string;
+  updated_at: string;
   store?: Store;
 }
 
@@ -18,11 +19,11 @@ export interface Store {
   address: string;
   city: string;
   state: string;
-  zipCode: string;
-  phoneNumber: string;
+  zip_code: string;
+  phone_number: string;
   email: string;
-  createdAt: string;
-  updatedAt: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface CreateProductDto {
